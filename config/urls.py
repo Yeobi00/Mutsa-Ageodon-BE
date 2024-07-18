@@ -15,8 +15,37 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
+from rest_framework.routers import DefaultRouter
+
+from auths.views import kakao_login, verify, user_detail, user_my_detail
+from rest_framework_simplejwt.views import (
+    TokenRefreshView
+)
+
+from order.views import OrderViewSet
+from posts.views import PostViewSet
+
+class OptionalSlashRouter(DefaultRouter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.trailing_slash = '/?'
+
+router = OptionalSlashRouter()
+router.register(r'post', PostViewSet, basename='post')
+router.register(r'order', OrderViewSet, basename='order')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    path('auth/kakao/login', kakao_login),
+    path('auth/verify', verify),
+    path('auth/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+
+    path('users', user_detail),
+    path('users/me', user_my_detail),
+
+    path('', include(router.urls)),
 ]
+
