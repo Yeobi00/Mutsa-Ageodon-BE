@@ -1,6 +1,6 @@
 from django.db import models
 from auths.models import MutsaUser
-from posts.models import Post
+from postt.models import Post
 
 class Like(models.Model):
     LID = models.AutoField(primary_key=True)
