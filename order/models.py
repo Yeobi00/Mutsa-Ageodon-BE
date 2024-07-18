@@ -1,12 +1,12 @@
 from django.db import models
-from user.models import User
+from auths.models import MutsaUser
 from posts.models import Post
 
 class Order(models.Model):
     OID = models.AutoField(primary_key=True)
     order_time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=128)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(MutsaUser, on_delete=models.CASCADE)
     posts = models.ManyToManyField(Post, through='PostOrder')
     
 
