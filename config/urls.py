@@ -25,7 +25,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from order.views import OrderViewSet
-from posts.views import PostViewSet
+from postt.views import PostViewSet
 
 class OptionalSlashRouter(DefaultRouter):
     def __init__(self, *args, **kwargs):

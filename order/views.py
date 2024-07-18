@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from django.http import Http404
 
-from posts.models import Post
+from postt.models import Post
 from auths.models import MutsaUser
 from order.models import Order, PostOrder
 from order.serializers import OrderRequestDTO, OrderSerializer

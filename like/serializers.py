@@ -3,7 +3,7 @@ from rest_framework.exceptions import APIException
 
 from .models import Like
 
-class LikeSerializer(serializers.model_meta):
+class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = ['LID', 'like_date', 'PID', 'UID']

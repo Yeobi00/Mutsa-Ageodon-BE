@@ -1,6 +1,6 @@
 from django.db import models
 from auths.models import MutsaUser
-from posts.models import Post
+from postt.models import Post
 
 class Order(models.Model):
     OID = models.AutoField(primary_key=True)
@@ -17,7 +17,7 @@ class Order(models.Model):
 class PostOrder(models.Model):
     post_order_id = models.AutoField(primary_key=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    item = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"PostOrder {self.post_order_id} with Order {self.order.OID} and Post {self.post.PID}"
